@@ -215,10 +215,12 @@ document.head.appendChild(style);
         popupAnchor: [0, -38]
       });
 
-      L.marker([22.2564, 72.1764], { icon: pinIcon })
+      const marker = L.marker([22.2564, 72.1764], { icon: pinIcon })
         .addTo(map)
-        .bindPopup('<strong style="color:#c9a227">Civil Lines Phase-1 — Dholera Bhoomi</strong><br><span style="font-size:0.8rem">Dhandhuka Highway, Ta. Dholera, Gujarat 382455</span>')
-        .openPopup();
+        .bindPopup('<strong style="color:#c9a227">Civil Lines Phase-1 — Dholera Bhoomi</strong><br><span style="font-size:0.8rem">Dhandhuka Highway, Ta. Dholera, Gujarat 382455</span>');
+
+      map.setView([22.2564, 72.1764], 13);
+      marker.openPopup();
     });
 
   map.getContainer().addEventListener('click',      () => map.scrollWheelZoom.enable());
