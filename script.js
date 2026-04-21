@@ -198,6 +198,27 @@ document.head.appendChild(style);
         const group = L.featureGroup(layers).addTo(map);
         map.fitBounds(group.getBounds(), { padding: [30, 30] });
       }
+
+      // Drop pin on Dholera SIR
+      const pinIcon = L.divIcon({
+        className: '',
+        html: `<div style="
+          width:36px;height:36px;
+          background:#c9a227;
+          border:3px solid #fff;
+          border-radius:50% 50% 50% 0;
+          transform:rotate(-45deg);
+          box-shadow:0 4px 12px rgba(0,0,0,0.5);
+        "></div>`,
+        iconSize: [36, 36],
+        iconAnchor: [18, 36],
+        popupAnchor: [0, -38]
+      });
+
+      L.marker([22.3964, 72.1715], { icon: pinIcon })
+        .addTo(map)
+        .bindPopup('<strong style="color:#c9a227">Dholera SIR</strong><br><span style="font-size:0.8rem">Civil Lines Phase-1, Gujarat</span>')
+        .openPopup();
     });
 
   map.getContainer().addEventListener('click',      () => map.scrollWheelZoom.enable());
