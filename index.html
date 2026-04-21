@@ -6,6 +6,7 @@
   <title>Dholera Bhoomi — Dholera Smart City Plots | Civil Lines Phase-1 | Mohit Thakur</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -373,11 +374,7 @@
         <a href="#contact" class="btn-primary">Book an Office Visit</a>
       </div>
       <div class="map-wrapper">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d119040.0!2d72.17640!3d22.25640!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9e81b87aabb5%3A0x440dd7b3d2f8498f!2sDholera%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1714500000000!5m2!1sen!2sin"
-          width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade" title="Dholera SIR Location">
-        </iframe>
+        <div id="dholeraMap"></div>
         <div class="map-label">
           <span>📍 Civil Lines Phase-1, Dholera SIR, Gujarat</span>
           <a href="https://maps.google.com/?q=Dholera+SIR,+Gujarat" target="_blank" rel="noopener" class="map-open-link">Open in Google Maps ↗</a>
@@ -609,6 +606,8 @@
     </div>
   </footer>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-omnivore@0.3.4/leaflet-omnivore.min.js"></script>
   <script src="script.js"></script>
 </body>
 </html>

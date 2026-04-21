@@ -196,7 +196,7 @@ section + div + section {
   border: 2px solid rgba(201,162,39,0.3);
   box-shadow: 0 12px 40px rgba(0,0,0,0.4);
 }
-.map-wrapper iframe { display: block; }
+#dholeraMap { height: 420px; width: 100%; }
 .map-label {
   background: var(--dark2); padding: 14px 20px;
   display: flex; justify-content: space-between; align-items: center;

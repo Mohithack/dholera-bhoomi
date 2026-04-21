@@ -122,3 +122,27 @@ document.querySelectorAll('.card, .plot-card, .amenity-item, .usp-item, .gallery
 const style = document.createElement('style');
 style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
 document.head.appendChild(style);
+
+// Leaflet map with KML overlay
+(function () {
+  if (!document.getElementById('dholeraMap')) return;
+
+  const map = L.map('dholeraMap', { scrollWheelZoom: false }).setView([22.4933, 72.2917], 12);
+
+  // Satellite imagery base layer (Google Earth feel)
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+    attribution: 'Tiles © Esri',
+    maxZoom: 19
+  }).addTo(map);
+
+  // KML overlay
+  const kmlLayer = omnivore.kml('dholera-expressway.kml')
+    .on('ready', function () {
+      map.fitBounds(kmlLayer.getBounds(), { padding: [30, 30] });
+    })
+    .addTo(map);
+
+  // Re-enable scroll zoom only when map is clicked/focused
+  map.getContainer().addEventListener('click', () => map.scrollWheelZoom.enable());
+  map.getContainer().addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
+})();
