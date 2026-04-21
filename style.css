@@ -417,9 +417,83 @@ section + div + section {
 
 /* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--dark); padding: 20px; gap: 16px; border-bottom: 1px solid rgba(201,162,39,0.2); }
+
+  /* NAV */
+  .nav-links {
+    display: none; flex-direction: column;
+    position: absolute; top: 70px; left: 0; right: 0;
+    background: var(--dark); padding: 20px 24px; gap: 14px;
+    border-bottom: 2px solid rgba(201,162,39,0.25);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
   .nav-links.open { display: flex; }
+  .nav-links a { font-size: 1rem; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .btn-nav { text-align: center; border-radius: 8px; padding: 10px 20px; }
   .hamburger { display: block; }
-  .location-inner, .contact-inner { grid-template-columns: 1fr; gap: 36px; }
-  .hero-stats { gap: 24px; }
+
+  /* HERO */
+  .hero { min-height: 90vh; padding-top: 70px; }
+  .hero-content { padding: 48px 0 40px; }
+  .hero h1 { font-size: 2rem; line-height: 1.2; }
+  .hero-sub { font-size: 0.95rem; }
+  .hero-cta { flex-direction: column; gap: 12px; }
+  .hero-cta a { text-align: center; width: 100%; }
+  .hero-stats { gap: 16px; grid-template-columns: repeat(2, 1fr); display: grid; }
+  .hero-stats div { text-align: center; }
+
+  /* SECTIONS */
+  .section-title { font-size: 1.5rem; }
+  .cards-grid { grid-template-columns: 1fr; gap: 16px; }
+  .plot-grid { grid-template-columns: 1fr; gap: 20px; }
+  .plot-card { padding: 28px 22px; }
+
+  /* USP */
+  .usp-grid { grid-template-columns: 1fr; gap: 20px; }
+  .usp-item { flex-direction: column; gap: 10px; }
+  .usp-number { font-size: 2rem; }
+
+  /* GALLERY */
+  .slider-wrapper { border-radius: 10px; }
+  .slider-btn { width: 36px; height: 36px; font-size: 1rem; }
+
+  /* AMENITIES */
+  .amenity-list { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .amenity-item { font-size: 0.82rem; padding: 10px 12px; }
+
+  /* LOCATION */
+  .location-inner { grid-template-columns: 1fr; gap: 28px; }
+  #dholeraMap { height: 300px; }
+
+  /* CONTACT */
+  .contact-inner { grid-template-columns: 1fr; gap: 28px; }
+  .contact-text h2 { font-size: 1.6rem; }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea { font-size: 1rem; padding: 14px; }
+
+  /* NEWS */
+  .news-preview-grid { grid-template-columns: 1fr; gap: 18px; }
+
+  /* BROCHURE */
+  .brochure-box { flex-direction: column; gap: 20px; }
+  .brochure-left { flex-direction: column; gap: 16px; }
+
+  /* FOOTER */
+  .footer-inner { flex-direction: column; gap: 12px; text-align: center; }
+
+  /* GENERAL */
+  .container { padding: 0 16px; }
+  .btn-primary, .btn-outline { padding: 13px 24px; font-size: 0.9rem; }
+  .full-width { width: 100%; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.7rem; }
+  .hero-stats { grid-template-columns: repeat(2, 1fr); }
+  .hero-stats strong { font-size: 1.3rem; }
+  .section-title { font-size: 1.3rem; }
+  .amenity-list { grid-template-columns: repeat(2, 1fr); }
+  .plot-card h3 { font-size: 1.2rem; }
+  .dholera-band p { font-size: 0.78rem; }
+  #dholeraMap { height: 260px; }
 }
