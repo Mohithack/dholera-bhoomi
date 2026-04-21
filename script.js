@@ -150,9 +150,7 @@ document.head.appendChild(style);
       });
   }
 
-  loadKML('dholera-expressway.kml', true);
-  loadKML('dholera-sir.kml', false);
-  loadKML('map2.kml', false);
+  loadKML('map2.kml', true);
 
   // Re-enable scroll zoom only when map is clicked/focused
   map.getContainer().addEventListener('click', () => map.scrollWheelZoom.enable());
