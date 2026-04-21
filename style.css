@@ -408,6 +408,24 @@ section + div + section {
 .faq-a li { color: var(--muted); font-size: 0.88rem; line-height: 1.6; }
 .faq-a strong { color: var(--text); }
 
+/* ── TEAM CONTACT BOX ── */
+.team-box {
+  margin-top: 28px; padding: 20px 24px;
+  background: rgba(201,162,39,0.08);
+  border: 1px solid rgba(201,162,39,0.3);
+  border-radius: 10px;
+}
+.team-box-title { color: var(--gold); font-weight: 700; font-size: 1rem; margin-bottom: 14px; }
+.team-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 14px; }
+.team-row {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 8px; padding: 8px 12px;
+  background: rgba(255,255,255,0.03); border-radius: 8px;
+}
+.team-name { color: var(--white); font-size: 0.9rem; font-weight: 600; }
+.team-number { color: var(--gold); font-size: 0.9rem; text-decoration: none; font-weight: 500; white-space: nowrap; }
+.team-tagline { color: var(--muted); font-size: 0.85rem; }
+
 /* ── NEWS ── */
 .news-preview-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
 .news-card { background: var(--dark2); border: 1px solid rgba(201,162,39,0.15); border-radius: 16px; overflow: hidden; transition: transform .2s, box-shadow .2s; }
@@ -425,13 +443,20 @@ section + div + section {
   .nav-links {
     display: none; flex-direction: column;
     position: absolute; top: 70px; left: 0; right: 0;
-    background: var(--dark); padding: 20px 24px; gap: 14px;
+    background: var(--dark); padding: 16px 20px 20px; gap: 4px;
     border-bottom: 2px solid rgba(201,162,39,0.25);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.5);
   }
   .nav-links.open { display: flex; }
-  .nav-links a { font-size: 1rem; padding: 6px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
-  .btn-nav { text-align: center; border-radius: 8px; padding: 10px 20px; }
+  .nav-links li { width: 100%; }
+  .nav-links a { font-size: 1rem; padding: 12px 0; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); width: 100%; }
+  .nav-links li:last-child a { border-bottom: none; }
+  .btn-nav {
+    display: block; text-align: center; width: 100%;
+    margin-top: 8px; padding: 14px 20px;
+    border-radius: 10px; font-size: 1rem;
+    background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  }
   .hamburger { display: block; }
 
   /* HERO */
@@ -472,7 +497,13 @@ section + div + section {
   .contact-text h2 { font-size: 1.6rem; }
   .contact-form input,
   .contact-form select,
-  .contact-form textarea { font-size: 1rem; padding: 14px; }
+  .contact-form textarea { font-size: 1rem; padding: 14px; width: 100%; box-sizing: border-box; }
+  .contact-form { width: 100%; box-sizing: border-box; }
+
+  /* TEAM BOX */
+  .team-row { flex-direction: column; align-items: flex-start; gap: 4px; }
+  .team-number { font-size: 1rem; font-weight: 600; }
+  .team-box { padding: 16px; }
 
   /* NEWS */
   .news-preview-grid { grid-template-columns: 1fr; gap: 18px; }
