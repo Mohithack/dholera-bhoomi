@@ -123,7 +123,7 @@ const style = document.createElement('style');
 style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
 document.head.appendChild(style);
 
-// Leaflet map with KML overlay
+// Leaflet map with KML overlays
 (function () {
   if (!document.getElementById('dholeraMap')) return;
 
@@ -135,12 +135,14 @@ document.head.appendChild(style);
     maxZoom: 19
   }).addTo(map);
 
-  // KML overlay
-  const kmlLayer = omnivore.kml('dholera-expressway.kml')
-    .on('ready', function () {
-      map.fitBounds(kmlLayer.getBounds(), { padding: [30, 30] });
-    })
-    .addTo(map);
+  // Load all three KML layers; fit bounds once the first one is ready
+  const kml1 = omnivore.kml('dholera-expressway.kml').addTo(map);
+  const kml2 = omnivore.kml('dholera-sir.kml').addTo(map);
+  const kml3 = omnivore.kml('map2.kml').addTo(map);
+
+  kml1.on('ready', function () {
+    map.fitBounds(kml1.getBounds(), { padding: [30, 30] });
+  });
 
   // Re-enable scroll zoom only when map is clicked/focused
   map.getContainer().addEventListener('click', () => map.scrollWheelZoom.enable());
