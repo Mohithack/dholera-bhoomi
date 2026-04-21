@@ -132,18 +132,27 @@ document.head.appendChild(style);
   // Google hybrid satellite tiles (satellite imagery + road/place labels)
   L.tileLayer('https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
     subdomains: ['0','1','2','3'],
-    attribution: 'Map data © Google',
     maxZoom: 20
   }).addTo(map);
 
-  // Load all three KML layers; fit bounds once the first one is ready
-  const kml1 = omnivore.kml('dholera-expressway.kml').addTo(map);
-  const kml2 = omnivore.kml('dholera-sir.kml').addTo(map);
-  const kml3 = omnivore.kml('map2.kml').addTo(map);
+  const parser = new DOMParser();
 
-  kml1.on('ready', function () {
-    map.fitBounds(kml1.getBounds(), { padding: [30, 30] });
-  });
+  function loadKML(file, fitOnLoad) {
+    fetch(file)
+      .then(r => r.text())
+      .then(text => {
+        const xml = parser.parseFromString(text, 'text/xml');
+        const layer = new L.KML(xml);
+        map.addLayer(layer);
+        if (fitOnLoad) {
+          map.fitBounds(layer.getBounds(), { padding: [30, 30] });
+        }
+      });
+  }
+
+  loadKML('dholera-expressway.kml', true);
+  loadKML('dholera-sir.kml', false);
+  loadKML('map2.kml', false);
 
   // Re-enable scroll zoom only when map is clicked/focused
   map.getContainer().addEventListener('click', () => map.scrollWheelZoom.enable());
