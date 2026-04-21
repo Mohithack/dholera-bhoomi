@@ -18,6 +18,8 @@ body {
   font-family: 'Inter', sans-serif;
   background: var(--dark);
   color: var(--text);
+  user-select: none;
+  -webkit-user-select: none;
   line-height: 1.6;
 }
 
@@ -149,7 +151,7 @@ section + div + section {
 
 /* ── PLOTS ── */
 .plots { background: var(--dark); }
-.plot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; }
+.plot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; align-items: start; }
 .plot-card {
   background: var(--dark2); border: 1px solid rgba(201,162,39,0.2);
   border-radius: 16px; padding: 36px 32px; position: relative;
@@ -233,6 +235,7 @@ section + div + section {
   border-radius: 8px; padding: 14px 16px; color: var(--text);
   font-family: 'Inter', sans-serif; font-size: 0.9rem;
   outline: none; transition: border-color .2s;
+  user-select: text; -webkit-user-select: text;
 }
 .contact-form input:focus,
 .contact-form select:focus,

@@ -1,3 +1,10 @@
+// Disable text selection, copy, and right-click
+document.addEventListener('contextmenu', e => e.preventDefault());
+document.addEventListener('copy', e => e.preventDefault());
+document.addEventListener('selectstart', e => {
+  if (!e.target.closest('input, textarea, select')) e.preventDefault();
+});
+
 // Hamburger menu
 const hamburger = document.getElementById('hamburger');
 const navLinks = document.querySelector('.nav-links');
