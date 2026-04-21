@@ -129,10 +129,11 @@ document.head.appendChild(style);
 
   const map = L.map('dholeraMap', { scrollWheelZoom: false }).setView([22.4933, 72.2917], 12);
 
-  // Satellite imagery base layer (Google Earth feel)
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-    attribution: 'Tiles © Esri',
-    maxZoom: 19
+  // Google hybrid satellite tiles (satellite imagery + road/place labels)
+  L.tileLayer('https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+    subdomains: ['0','1','2','3'],
+    attribution: 'Map data © Google',
+    maxZoom: 20
   }).addTo(map);
 
   // Load all three KML layers; fit bounds once the first one is ready
