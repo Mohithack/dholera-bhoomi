@@ -215,9 +215,9 @@ document.head.appendChild(style);
         popupAnchor: [0, -38]
       });
 
-      L.marker([22.3964, 72.1715], { icon: pinIcon })
+      L.marker([22.2564, 72.1764], { icon: pinIcon })
         .addTo(map)
-        .bindPopup('<strong style="color:#c9a227">Dholera SIR</strong><br><span style="font-size:0.8rem">Civil Lines Phase-1, Gujarat</span>')
+        .bindPopup('<strong style="color:#c9a227">Civil Lines Phase-1 — Dholera Bhoomi</strong><br><span style="font-size:0.8rem">Dhandhuka Highway, Ta. Dholera, Gujarat 382455</span>')
         .openPopup();
     });
 
