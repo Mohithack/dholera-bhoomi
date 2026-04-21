@@ -127,7 +127,7 @@ document.head.appendChild(style);
 (function () {
   if (!document.getElementById('dholeraMap')) return;
 
-  const map = L.map('dholeraMap', { scrollWheelZoom: false }).setView([22.4933, 72.2917], 12);
+  const map = L.map('dholeraMap', { scrollWheelZoom: false, attributionControl: false }).setView([22.4933, 72.2917], 12);
 
   // Google hybrid satellite tiles (satellite imagery + road/place labels)
   L.tileLayer('https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
