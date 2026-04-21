@@ -123,36 +123,83 @@ const style = document.createElement('style');
 style.textContent = '.visible { opacity: 1 !important; transform: translateY(0) !important; }';
 document.head.appendChild(style);
 
-// Leaflet map with KML overlays
+// Leaflet map with KML overlay
 (function () {
   if (!document.getElementById('dholeraMap')) return;
 
-  const map = L.map('dholeraMap', { scrollWheelZoom: false, attributionControl: false }).setView([22.4933, 72.2917], 12);
+  const map = L.map('dholeraMap', { scrollWheelZoom: false, attributionControl: false }).setView([22.4933, 72.2917], 13);
 
-  // Google hybrid satellite tiles (satellite imagery + road/place labels)
   L.tileLayer('https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
-    subdomains: ['0','1','2','3'],
-    maxZoom: 20
+    subdomains: ['0','1','2','3'], maxZoom: 20
   }).addTo(map);
 
-  const parser = new DOMParser();
-
-  function loadKML(file, fitOnLoad) {
-    fetch(file)
-      .then(r => r.text())
-      .then(text => {
-        const xml = parser.parseFromString(text, 'text/xml');
-        const layer = new L.KML(xml);
-        map.addLayer(layer);
-        if (fitOnLoad) {
-          map.fitBounds(layer.getBounds(), { padding: [30, 30] });
-        }
-      });
+  // Convert KML AABBGGRR color to { hex, alpha }
+  function kmlColor(str) {
+    const c = (str || '').trim().padStart(8, 'f');
+    const a = parseInt(c.slice(0,2), 16) / 255;
+    const b = parseInt(c.slice(2,4), 16);
+    const g = parseInt(c.slice(4,6), 16);
+    const r = parseInt(c.slice(6,8), 16);
+    return { hex: '#' + [r,g,b].map(x => x.toString(16).padStart(2,'0')).join(''), alpha: a };
   }
 
-  loadKML('map2.kml', true);
+  // Parse "lon,lat,alt ..." coordinate string to Leaflet [lat,lng] pairs
+  function parseCoords(str) {
+    return (str || '').trim().split(/\s+/).reduce((acc, pt) => {
+      const [lng, lat] = pt.split(',').map(Number);
+      if (!isNaN(lat) && !isNaN(lng)) acc.push([lat, lng]);
+      return acc;
+    }, []);
+  }
 
-  // Re-enable scroll zoom only when map is clicked/focused
-  map.getContainer().addEventListener('click', () => map.scrollWheelZoom.enable());
+  fetch('map2.kml')
+    .then(r => r.text())
+    .then(text => {
+      const xml = new DOMParser().parseFromString(text, 'text/xml');
+
+      // Build style lookup from <Style id="...">
+      const styles = {};
+      xml.querySelectorAll('Style[id]').forEach(s => {
+        const fillEl   = s.querySelector('PolyStyle > color');
+        const strokeEl = s.querySelector('LineStyle > color');
+        const widthEl  = s.querySelector('LineStyle > width');
+        const fill   = kmlColor(fillEl   ? fillEl.textContent   : 'bf888888');
+        const stroke = kmlColor(strokeEl ? strokeEl.textContent : '00000000');
+        styles[s.getAttribute('id')] = {
+          fillColor:   fill.hex,
+          fillOpacity: fill.alpha,
+          color:       stroke.alpha < 0.01 ? 'transparent' : stroke.hex,
+          opacity:     stroke.alpha,
+          weight:      widthEl ? parseFloat(widthEl.textContent) : 0.5
+        };
+      });
+
+      const layers = [];
+      xml.querySelectorAll('Placemark').forEach(pm => {
+        const ref   = (pm.querySelector('styleUrl') || {}).textContent;
+        const style = styles[(ref || '').replace('#','')] || {
+          fillColor:'#888', fillOpacity:0.5, color:'transparent', opacity:0, weight:0.5
+        };
+        pm.querySelectorAll('Polygon').forEach(poly => {
+          const outerEl = poly.querySelector('outerBoundaryIs coordinates');
+          if (!outerEl) return;
+          const outer = parseCoords(outerEl.textContent);
+          if (outer.length < 3) return;
+          const holes = [];
+          poly.querySelectorAll('innerBoundaryIs coordinates').forEach(el => {
+            const h = parseCoords(el.textContent);
+            if (h.length >= 3) holes.push(h);
+          });
+          layers.push(L.polygon(holes.length ? [outer, ...holes] : outer, style));
+        });
+      });
+
+      if (layers.length) {
+        const group = L.featureGroup(layers).addTo(map);
+        map.fitBounds(group.getBounds(), { padding: [30, 30] });
+      }
+    });
+
+  map.getContainer().addEventListener('click',      () => map.scrollWheelZoom.enable());
   map.getContainer().addEventListener('mouseleave', () => map.scrollWheelZoom.disable());
 })();
