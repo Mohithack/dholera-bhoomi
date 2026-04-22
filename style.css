@@ -59,37 +59,38 @@ body {
 .hero {
   min-height: 100vh;
   background:
-    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(201,162,39,0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 80% at 80% 20%, rgba(26,35,64,0.9) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 50% at 90% 80%, rgba(201,162,39,0.04) 0%, transparent 60%),
-    linear-gradient(135deg, #0a0e17 0%, #111827 40%, #0d1520 100%);
+    radial-gradient(ellipse 70% 60% at 15% 50%, rgba(201,162,39,0.13) 0%, transparent 65%),
+    radial-gradient(ellipse 55% 55% at 85% 15%, rgba(30,50,100,0.6) 0%, transparent 60%),
+    radial-gradient(ellipse 45% 45% at 85% 85%, rgba(201,162,39,0.07) 0%, transparent 55%),
+    linear-gradient(135deg, #080c14 0%, #0f1a2e 50%, #0a0f1a 100%);
   display: flex; align-items: center;
   position: relative; overflow: hidden;
   padding-top: 70px;
 }
-/* Grid line pattern */
+/* Gold grid lines */
 .hero::before {
   content: '';
-  position: absolute; inset: 0;
+  position: absolute; inset: 0; z-index: 0;
   background-image:
-    linear-gradient(rgba(201,162,39,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,162,39,0.06) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 90% at 50% 50%, black 30%, transparent 100%);
+    linear-gradient(rgba(201,162,39,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,162,39,0.1) 1px, transparent 1px);
+  background-size: 70px 70px;
+  -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 80%);
+  mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 80%);
 }
-/* Gold corner glow top-right */
+/* Gold glow blob top-right */
 .hero::after {
   content: '';
-  position: absolute; top: -20%; right: -10%;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(201,162,39,0.07) 0%, transparent 70%);
+  position: absolute; top: -15%; right: -5%; z-index: 0;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(201,162,39,0.12) 0%, transparent 65%);
   pointer-events: none;
 }
 .hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to right, rgba(10,14,23,0.92) 55%, transparent);
+  position: absolute; inset: 0; z-index: 0;
+  background: linear-gradient(to right, rgba(8,12,20,0.93) 50%, rgba(8,12,20,0.2) 100%);
 }
+.hero-content { position: relative; z-index: 1; max-width: 700px; padding: 80px 0; }
 .hero-content { position: relative; z-index: 1; max-width: 700px; padding: 80px 0; }
 .hero-tag {
   display: inline-block;
