@@ -482,8 +482,8 @@ section + div + section {
   /* NAV handled by 960px breakpoint above */
 
   /* HERO */
-  .hero { min-height: 90vh; padding-top: 70px; }
-  .hero-content { padding: 20px 0 32px; }
+  .hero { min-height: 100vh; padding-top: 70px; align-items: flex-start; }
+  .hero-content { padding: 28px 0 40px; }
   .hero h1 { font-size: 2rem; line-height: 1.2; }
   .hero-sub { font-size: 0.95rem; }
   .hero-cta { flex-direction: column; gap: 12px; }
