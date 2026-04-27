@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dholera-bhoomi.vercel.app/sitemap.xml
