@@ -50,7 +50,7 @@ export function Home() {
               View Plots & Pricing
             </a>
             <a href="#contact" className="btn-outline">
-              Book Free Office Visit
+              Book Office Visit
             </a>
           </div>
           <div className="hero-stats">
@@ -75,7 +75,7 @@ export function Home() {
       </section>
 
       <div className="brand-cta-marquee">
-        <p>⚡ GREAT OPPORTUNITY &nbsp;—&nbsp; Limited Plots Available &nbsp;—&nbsp; Easy Payment Options Available</p>
+        <p>⚡ GREAT OPPORTUNITY &nbsp;—&nbsp; Limited Plots Available</p>
       </div>
 
       <section className="why-us" id="why">
@@ -111,7 +111,7 @@ export function Home() {
             <div className="card">
               <div className="card-icon">💰</div>
               <h3>Affordable Entry Price</h3>
-              <p>Starting at just ₹10.80 Lakh for 120 Gaj. Easy payment options to suit every budget.</p>
+              <p>Starting at just ₹10.80 Lakh for 120 Gaj — one of the most accessible entries in India&apos;s premier smart city.</p>
             </div>
           </div>
         </div>
@@ -248,28 +248,6 @@ export function Home() {
             </div>
           </div>
 
-          <div
-            style={{
-              marginTop: 48,
-              background: 'var(--dark2)',
-              border: '1px solid rgba(201,162,39,0.3)',
-              borderRadius: 14,
-              padding: '32px 36px',
-              display: 'flex',
-              flexWrap: 'wrap',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              gap: 24,
-            }}
-          >
-            <div>
-              <h3 style={{ color: 'var(--white)', fontSize: '1.3rem', marginBottom: 8 }}>Easy Payment Options Available</h3>
-              <p style={{ color: 'var(--muted)', fontSize: '0.9rem' }}>Flexible installment plans to make your investment easy and affordable.</p>
-            </div>
-            <a href="#contact" className="btn-primary">
-              Get Payment Plan
-            </a>
-          </div>
         </div>
       </section>
 
@@ -306,26 +284,12 @@ export function Home() {
             <div className="usp-item">
               <div className="usp-number">03</div>
               <div className="usp-content">
-                <h3>Free Personalised Site Visit</h3>
-                <p>We personally escort you to the site, walk you through the masterplan, and help you choose your ideal plot — at no cost.</p>
+                <h3>Post-Sale Support</h3>
+                <p>From documentation to registry through to resale guidance — we stand by you at every step, even after purchase.</p>
               </div>
             </div>
             <div className="usp-item">
               <div className="usp-number">04</div>
-              <div className="usp-content">
-                <h3>Flexible Easy EMI Options</h3>
-                <p>Start your investment with a small down payment and spread the rest into comfortable monthly installments tailored to your budget.</p>
-              </div>
-            </div>
-            <div className="usp-item">
-              <div className="usp-number">05</div>
-              <div className="usp-content">
-                <h3>Post-Sale Support</h3>
-                <p>From documentation to registry, from site visits to resale assistance — we stand by you at every step, even after purchase.</p>
-              </div>
-            </div>
-            <div className="usp-item">
-              <div className="usp-number">06</div>
               <div className="usp-content">
                 <h3>Trusted by 500+ Families</h3>
                 <p>The Dholera Bhoomi team has helped hundreds of families and investors secure their stake in India&apos;s smartest city.</p>
@@ -374,7 +338,7 @@ export function Home() {
               <li>📍 Near Dhanduka City & Railway Station</li>
             </ul>
             <a href="#contact" className="btn-primary">
-              Book an Office Visit
+              Contact Our Team
             </a>
           </div>
           <div className="map-wrapper">
@@ -490,8 +454,6 @@ export function Home() {
             <p>Our team will personally guide you through the site and help you select the best plot for your needs and budget.</p>
             <div className="contact-details">
               <p>📍 Civil Lines Phase-1, Dholera SIR, Gujarat</p>
-              <p>🕘 Site Visit Available (T&C Apply)</p>
-              <p>💳 Easy Payment Options Available</p>
             </div>
             <div className="team-box">
               <p className="team-box-title">A Project by Dholera Bhoomi</p>
@@ -534,7 +496,7 @@ export function Home() {
             <BrandLogo variant="footer" />
           </Link>
           <p>© 2026 Dholera Bhoomi. All rights reserved. | Civil Lines Phase-1, Dholera SIR, Gujarat</p>
-          <p className="disclaimer">*Prices are indicative and subject to change. Images are for representation purposes only. Please verify all details at site visit.</p>
+          <p className="disclaimer">*Prices are indicative and subject to change. Images are for representation purposes only. Please verify all details with our team.</p>
         </div>
       </footer>
     </>

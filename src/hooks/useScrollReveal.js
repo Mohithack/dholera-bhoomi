@@ -1,8 +1,10 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
+/* Omit .faq-item: accordion height changes confuse intersection, and injecting
+   reveal CSS that is later removed caused FAQ rows to vanish until re-scroll. */
 const SELECTOR =
-  '.card, .plot-card, .amenity-item, .usp-item, .gallery-card, .faq-item';
+  '.card, .plot-card, .amenity-item, .usp-item, .gallery-card';
 
 export function useScrollReveal() {
   const { pathname } = useLocation();
@@ -10,21 +12,18 @@ export function useScrollReveal() {
   useEffect(() => {
     if (pathname !== '/') return undefined;
 
-    const style = document.createElement('style');
-    style.textContent =
-      '.reveal-visible { opacity: 1 !important; transform: translateY(0) !important; }';
-    document.head.appendChild(style);
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) entry.target.classList.add('reveal-visible');
         });
       },
-      { threshold: 0.1 },
+      { threshold: 0.08, rootMargin: '0px 0px -40px 0px' },
     );
 
-    document.querySelectorAll(SELECTOR).forEach((el) => {
+    const nodes = document.querySelectorAll(SELECTOR);
+
+    nodes.forEach((el) => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(20px)';
       el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
@@ -33,7 +32,12 @@ export function useScrollReveal() {
 
     return () => {
       observer.disconnect();
-      style.remove();
+      nodes.forEach((el) => {
+        el.classList.remove('reveal-visible');
+        el.style.removeProperty('opacity');
+        el.style.removeProperty('transform');
+        el.style.removeProperty('transition');
+      });
     };
   }, [pathname]);
 }

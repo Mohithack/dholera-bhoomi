@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const INITIAL_LABEL = 'Send Enquiry & Book Office Visit';
+const INITIAL_LABEL = 'Send Enquiry';
 
 export function ContactForm() {
   const [submitLabel, setSubmitLabel] = useState(INITIAL_LABEL);
@@ -40,7 +40,7 @@ export function ContactForm() {
     setHighlight(true);
     setDisabled(true);
     setTimeout(() => {
-      setSubmitLabel('Send Enquiry & Book Site Visit');
+      setSubmitLabel('Send Enquiry');
       setHighlight(false);
       setDisabled(false);
       form.reset();
