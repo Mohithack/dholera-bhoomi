@@ -1,50 +1,71 @@
 import { useState } from 'react';
 
-const INITIAL_LABEL = 'Send Enquiry';
-
 export function ContactForm() {
-  const [submitLabel, setSubmitLabel] = useState(INITIAL_LABEL);
-  const [disabled, setDisabled] = useState(false);
-  const [highlight, setHighlight] = useState(false);
+  const [waUrl, setWaUrl] = useState('');
+  const [submitted, setSubmitted] = useState(false);
 
   function handleSubmit(e) {
     e.preventDefault();
-    const form = e.currentTarget;
-    const fd = new FormData(form);
-    const name = (fd.get('name') || '').toString().trim();
-    const mobile = (fd.get('mobile') || '').toString().trim();
-    const email = (fd.get('email') || '').toString().trim();
-    const plot = (fd.get('plot') || '').toString() || 'Not selected';
+    const fd = new FormData(e.currentTarget);
+    const name    = (fd.get('name') || '').toString().trim();
+    const mobile  = (fd.get('mobile') || '').toString().trim();
+    const email   = (fd.get('email') || '').toString().trim();
+    const plot    = (fd.get('plot') || '').toString() || 'Not selected';
     const purpose = (fd.get('purpose') || '').toString() || 'Not selected';
     const message = (fd.get('message') || '').toString().trim();
 
+    const now = new Date().toLocaleString('en-IN', {
+      day: '2-digit', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', hour12: true,
+    });
+
     const text = [
-      '🏡 *New Plot Enquiry — Dholera Bhoomi*',
+      '🏡 *BhoomiTree Realty — Plot Enquiry*',
+      `📅 ${now}`,
       '',
       `👤 *Name:* ${name}`,
       `📞 *Mobile:* ${mobile}`,
       email ? `📧 *Email:* ${email}` : null,
+      '',
       `🏗️ *Plot Type:* ${plot}`,
       `🎯 *Purpose:* ${purpose}`,
-      message ? `💬 *Message:* ${message}` : null,
+      message ? `\n💬 *Message:*\n${message}` : null,
       '',
-      '_Sent via DholeraBhoomi.in_',
+      '---',
+      '_via BhoomiTreeRealty.in_',
     ]
-      .filter(Boolean)
+      .filter((l) => l !== null)
       .join('\n');
 
-    const whatsappURL = `https://wa.me/917009457653?text=${encodeURIComponent(text)}`;
-    window.open(whatsappURL, '_blank');
+    setWaUrl(`https://wa.me/919696960004?text=${encodeURIComponent(text)}`);
+    setSubmitted(true);
+  }
 
-    setSubmitLabel('✔ Opening WhatsApp…');
-    setHighlight(true);
-    setDisabled(true);
-    setTimeout(() => {
-      setSubmitLabel('Send Enquiry');
-      setHighlight(false);
-      setDisabled(false);
-      form.reset();
-    }, 4000);
+  if (submitted) {
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '14px', textAlign: 'center' }}>
+        <p style={{ color: '#22c55e', fontWeight: 700, fontSize: '1rem' }}>✅ Enquiry ready!</p>
+        <a
+          href={waUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-primary full-width"
+        >
+          📲 Open WhatsApp &amp; Send
+        </a>
+        <p style={{ fontSize: '0.8rem', color: 'var(--muted)' }}>
+          No WhatsApp? &nbsp;
+          <a href="tel:+919696960004" style={{ color: 'var(--gold)', textDecoration: 'none' }}>📞 Call +91 96969 60004</a>
+        </p>
+        <button
+          type="button"
+          onClick={() => setSubmitted(false)}
+          style={{ background: 'none', border: 'none', color: 'var(--muted)', cursor: 'pointer', fontSize: '0.82rem' }}
+        >
+          ← Edit details
+        </button>
+      </div>
+    );
   }
 
   return (
@@ -70,20 +91,12 @@ export function ContactForm() {
         <option value="Business / Commercial Use">Business / Commercial Use</option>
       </select>
       <textarea name="message" placeholder="Any specific requirements or questions?" rows={3} />
-      <button
-        type="submit"
-        className="btn-primary full-width"
-        disabled={disabled}
-        style={
-          highlight
-            ? {
-                background: '#22c55e',
-              }
-            : undefined
-        }
-      >
-        {submitLabel}
+      <button type="submit" className="btn-primary full-width">
+        Review &amp; Send Enquiry →
       </button>
+      <p style={{ fontSize: '0.78rem', color: 'var(--muted)', textAlign: 'center', marginTop: '8px' }}>
+        No WhatsApp? &nbsp;<a href="tel:+919696960004" style={{ color: 'var(--gold)', textDecoration: 'none' }}>📞 Call us directly</a>
+      </p>
     </form>
   );
 }

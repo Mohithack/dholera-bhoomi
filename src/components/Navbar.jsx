@@ -60,9 +60,9 @@ export function Navbar() {
             </a>
           </li>
           <li>
-            <a href="#contact" className="btn-nav" onClick={closeMenu}>
+            <Link to="/contact" className="btn-nav" onClick={closeMenu}>
               Book Now
-            </a>
+            </Link>
           </li>
         </ul>
         <button

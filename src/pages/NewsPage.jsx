@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { PlatformNavbar } from '../components/PlatformNavbar.jsx';
 import { BrandLogo } from '../components/BrandLogo.jsx';
 import { NEWS_ARTICLES } from '../data/newsData.js';
 import './newsPage.css';
 
 export function NewsPage() {
   useEffect(() => {
-    document.title = 'Dholera SIR Latest News | Dholera Bhoomi';
+    document.title = 'Dholera SIR Latest News | BhoomiTree Realty';
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) {
       metaDesc.setAttribute(
@@ -14,20 +15,13 @@ export function NewsPage() {
         'Stay updated with the latest news and developments from Dholera SIR smart city — airport, expressway, Tata semiconductor plant, and more.',
       );
     }
+    document.body.classList.add('light-theme');
+    return () => document.body.classList.remove('light-theme');
   }, []);
 
   return (
     <div className="news-page-root">
-      <nav className="navbar">
-        <div className="nav-inner">
-          <Link to="/" className="logo logo-mark" aria-label="BhoomiTree Realty — Home">
-            <BrandLogo variant="nav" />
-          </Link>
-          <Link to="/" className="back-btn">
-            ← Back to Main Site
-          </Link>
-        </div>
-      </nav>
+      <PlatformNavbar />
 
       <div className="news-hero">
         <h1>
@@ -58,10 +52,13 @@ export function NewsPage() {
         </div>
       </section>
 
-      <footer className="news-footer">
-        <p>
-          © 2026 Dholera Bhoomi. All rights reserved. &nbsp;|&nbsp; <Link to="/">Back to Main Site</Link>
-        </p>
+      <footer className="footer">
+        <div className="container footer-inner">
+          <Link to="/" className="logo logo-mark" aria-label="BhoomiTree Realty — Home">
+            <BrandLogo variant="footer" />
+          </Link>
+          <p>© 2026 BhoomiTree Realty. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );
