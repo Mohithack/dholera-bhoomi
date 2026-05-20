@@ -52,6 +52,42 @@ export function NewsPage() {
         </div>
       </section>
 
+      <section className="press-section">
+        <div className="container">
+          <div className="press-header">
+            <h2>Official Press Coverage</h2>
+            <p>Newspaper clippings from the Dholera SIR official government media archive.</p>
+          </div>
+          <div className="press-grid">
+            {[55, 56, 54, 53, 52, 36, 37, 38, 39, 40, 41, 42].map((id) => (
+              <a
+                key={id}
+                href="https://dholera.gujarat.gov.in/print-media"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="press-clip"
+              >
+                <img
+                  src={`https://dholera.gujarat.gov.in/web/image?model=media.print&field=article_image&id=${id}`}
+                  alt={`Dholera SIR press clipping`}
+                  loading="lazy"
+                />
+              </a>
+            ))}
+          </div>
+          <div className="press-cta">
+            <a
+              href="https://dholera.gujarat.gov.in/print-media"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="press-cta-btn"
+            >
+              View All Press Clippings on Official Site →
+            </a>
+          </div>
+        </div>
+      </section>
+
       <footer className="footer">
         <div className="container footer-inner">
           <Link to="/" className="logo logo-mark" aria-label="BhoomiTree Realty — Home">
