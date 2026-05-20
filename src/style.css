@@ -206,7 +206,7 @@ section + div + section {
 
 /* ── WHY US ── */
 .why-us { background: var(--dark2); }
-.cards-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+.cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
 .card {
   background: var(--dark3); border: 1px solid rgba(212,175,55,0.15);
   border-radius: 12px; padding: 32px 28px;
@@ -549,7 +549,6 @@ section + div + section {
   .nav-links a { font-size: 1rem; padding: 12px 0; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); width: 100%; white-space: normal; }
   .btn-nav { display: block; text-align: center; width: 100%; margin-top: 8px; padding: 14px 20px; border-radius: 10px; font-size: 1rem; }
   .hamburger { display: block; }
-  .cards-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* ── RESPONSIVE ── */
